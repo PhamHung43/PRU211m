@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public float speed = 15f;
-	public float mapWidth = 5f;
+	public float mapWidth = 21f;
 
 	private Rigidbody2D rb;
 
