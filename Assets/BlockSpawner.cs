@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour {
@@ -6,9 +7,9 @@ public class BlockSpawner : MonoBehaviour {
 
 	public GameObject blockPrefab;
 
-	public float timeBetweenWaves = 1f;
+	public float timeBetweenWaves = 1.1f;
 
-	private float timeToSpawn = 2f;
+	private float timeToSpawn = 1f;
 
 	void Update () {
 
@@ -22,15 +23,32 @@ public class BlockSpawner : MonoBehaviour {
 
 	void SpawnBlocks ()
 	{
-		int randomIndex = Random.Range(0, spawnPoints.Length);
+        List<int> rdList = new List<int>();
+        int count = 0;
 
-		for (int i = 0; i < spawnPoints.Length; i++)
-		{
-			if (randomIndex != i)
-			{
-				Instantiate(blockPrefab, spawnPoints[i].position, Quaternion.identity);
-			}
-		}
-	}
+        while(count != 4)
+        {
+            int rdindex = Random.Range(0, spawnPoints.Length);
+            if (!rdList.Contains(rdindex))
+            {
+                Instantiate(blockPrefab, spawnPoints[rdindex].position, Quaternion.identity);
+                rdList.Add(rdindex);
+                count++;
+            }
+        }
+
+        
+
+
+        //for (int i = 0; i < spawnPoints.Length; i++)
+        //{
+        //	if (randomIndex != i)
+        //	{
+        //		Instantiate(blockPrefab, spawnPoints[i].position, Quaternion.identity);
+        //	}
+        //}
+
+
+    }
 	
 }
